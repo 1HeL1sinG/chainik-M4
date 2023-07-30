@@ -1,0 +1,23 @@
+.par-1 {
+    background-color: white;
+    border: solid;
+    border-color: black;
+
+}
+.par-2 {
+    background-color: blue;
+    border: solid;
+    border-color: black;
+}
+.par-3 {
+    background-color: red;
+    border: solid;
+    border-color: black;
+}
+.par-4 {
+    margin-top: 60px;
+    font-style: italic;
+    text-align: center;
+    font-size: 24px;
+    text-shadow: green 1px 0 10px;
+}
