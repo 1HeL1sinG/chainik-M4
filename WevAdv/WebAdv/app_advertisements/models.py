@@ -2,6 +2,11 @@ from typing import Any
 from django.db import models
 from django.contrib import admin
 from django.utils.html import format_html
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
+
 class Advertisement(models.Model):
 
 
@@ -11,6 +16,9 @@ class Advertisement(models.Model):
     auction = models.BooleanField("торг", help_text="есть ли торг")
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+    user = models.ForeignKey(User, verbose_name=(""), on_delete=models.CASCADE)
+    image = models.ImageField(("изображение"), upload_to='advertisements/')
+
 
     @admin.display(description='Дата создания')
     def created_date(self):
@@ -20,7 +28,15 @@ class Advertisement(models.Model):
             return format_html('<span style="color: green; font-weight: bold;">Сегодня в {}</span>', created_time)
         else:
             return self.created_at.strftime('%d:%m:%Y в %H:%M:%S')
+    
+    @admin.display(description='Мини-фото')
+    def mini_image(self):
         
+        if self.image != '':
+            return format_html('<img src="{}"', self.image.url)
+        else:
+            return format_html('<span style="color: red; font-weight: bold;">Фото отсутсвует</span>')
+
     @admin.display(description='Дата обновления')
     def updated_date(self):
         from django.utils import timezone
