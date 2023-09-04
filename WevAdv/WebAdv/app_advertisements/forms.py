@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Advertisement
 from django.core.exceptions import ValidationError
+
 # class AdvertisementForm(forms.Form):
 #     title = forms.CharField(max_length=128, widget=forms.TextInput(attrs={'class': 'form-control form-control-lg'}))
 #     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control form-control-lg'}))
@@ -28,5 +29,4 @@ class AdvertisementForm(forms.ModelForm):
             raise ValidationError('Незя так')
         return title
     
-
 
